@@ -8,6 +8,8 @@ import (
 	"os/signal"
 	"syscall"
 	"time"
+
+	"github.com/arunmalligere/to-do-service/app/to-do/handlers"
 )
 
 func main()  {
@@ -55,7 +57,7 @@ func run(log *log.Logger) error  {
 
 	api := http.Server {
 		Addr: cfg.Web.AppHost,
-		// Handler: nil,
+		Handler: handlers.API(shutdown),
 		ReadTimeout: cfg.Web.ReadTimeout,
 		WriteTimeout: cfg.Web.WriteTimeout,
 	}
