@@ -57,7 +57,7 @@ func run(log *log.Logger) error  {
 
 	api := http.Server {
 		Addr: cfg.Web.AppHost,
-		Handler: handlers.API(shutdown),
+		Handler: handlers.API(shutdown, log),
 		ReadTimeout: cfg.Web.ReadTimeout,
 		WriteTimeout: cfg.Web.WriteTimeout,
 	}

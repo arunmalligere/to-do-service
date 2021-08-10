@@ -2,8 +2,9 @@ package handlers
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
+
+	"github.com/arunmalligere/to-do-service/infra/web"
 )
 
 type todo struct{
@@ -16,6 +17,6 @@ func (t todo)Create(ctx context.Context, w http.ResponseWriter, r *http.Request)
 		} {
 			Status: "OK",
 		}
-		json.NewEncoder(w).Encode(status)
+		web.Respond(ctx, w, status, http.StatusOK)
 		return nil
 }
