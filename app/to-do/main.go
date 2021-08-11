@@ -12,6 +12,8 @@ import (
 	"github.com/arunmalligere/to-do-service/app/to-do/handlers"
 )
 
+var build= "develop"
+
 func main()  {
 	log := log.New(os.Stdout, "TO-DO::", log.LstdFlags|log.Lmicroseconds|log.Lshortfile)
 
@@ -44,6 +46,7 @@ func run(log *log.Logger) error  {
 
 	// =========================================================================
 	// Startup logs 
+	log.Printf("Build: %s", build)
 	log.Println("main: Started : Initializing ...")
 	defer log.Println("main: Completed")
 

@@ -1,0 +1,26 @@
+FROM golang:1.16.2 as build_to-do
+ENV CGO_ENABLED 0
+ARG VCS_REF
+
+RUN mkdir -p /service
+
+WORKDIR /service
+
+COPY go.* /service/
+#download modules to image cache
+RUN go mod download 
+
+COPY . .
+
+WORKDIR /service/app/to-do
+
+RUN go build -ldflags "-X main.build=${VCS_REF}"
+
+# Run the service binary in light weight Apline 
+
+FROM alpine:3.12
+ARG VCS_REF
+COPY --from=build_to-do /service/app/to-do /service/to-do 
+WORKDIR /service
+CMD ["./sales-api"]
+
