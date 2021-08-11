@@ -1,7 +1,7 @@
 package todo
 
 
-type Todo struct {
+type ToDo struct {
 	Title string
 	Description string
 }

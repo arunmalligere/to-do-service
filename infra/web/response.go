@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"log"
 	"net/http"
 )
 
@@ -26,6 +27,7 @@ func Respond(ctx context.Context, w http.ResponseWriter, data interface{}, statu
 	jsonData, err := json.Marshal(data)
 
 	if err != nil {
+		log.Println(err)
 		return err
 	}
 
